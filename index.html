@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <title>levelUp</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/x-icon" href="img/logo.jpg" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"
+    />
+  </head>
+  <body>
+    <header class="header" id="header">
+      <div class="logo">
+        <img src="img/logo.jpg" class="img-logo-header" alt="logo" />
+      </div>
+      <div class="navigation-header">
+        <a href="index.html" class="active">Início</a>
+        <a href="jogos.html" class="active">Jogos</a>
+        <a href="noticias.html" class="active">Notícias</a>
+        <a href="sobre.html" class="active">Sobre</a>
+        <a href="contatos.html" class="active">Contato</a>
+      </div>
+    </header>
+
+    <section class="popular-games">
+      <div class="game-carousel">
+        <img src="img/baldurs_gate_3_cover.webp" alt="Baldurs Gate 3" />
+        <img src="img/sea_of_stars_cover.avif" alt="Sea of Stars" />
+        <img src="img/dark_souls_3_cover.jpg" alt="Dark Souls 3" />
+      </div>
+      <button id="prevBtn">&#10094;</button>
+      <button id="nextBtn">&#10095;</button>
+    </section>
+
+    <section class="featured-games">
+      <h2>Recomendações para Você</h2>
+      <div class="game-card">
+        <img src="img/celeste_cover.png" alt="Celeste" />
+        <h3>Celeste</h3>
+        <p class="game-description">
+          Gênero: Plataforma Descrição: "Celeste" é um jogo de plataforma
+          altamente aclamado que segue a jornada da protagonista, Madeline,
+          enquanto ela escalada uma montanha misteriosa. Com controles precisos
+          e desafios gratificantes, o jogo oferece uma história emotiva sobre
+          superação pessoal e autoaceitação.
+        </p>
+        <a href="#">Saiba Mais</a>
+      </div>
+      <div class="game-card">
+        <img
+          src="img/red_dead_redemption_2_cover.jpg"
+          alt="Red Dead Redemption  II"
+        />
+        <h3>Red Dead Redemption II</h3>
+        <p class="game-description">
+          Gênero: Ação e aventura no Velho Oeste Descrição: "Red Dead Redemption
+          2" é uma epopeia do Velho Oeste, onde os jogadores assumem o papel de
+          Arthur Morgan, um fora da lei em uma jornada épica. O jogo oferece um
+          vasto mundo aberto, gráficos impressionantes e uma narrativa rica,
+          explorando temas de lealdade, honra e sobrevivência no final do século
+          XIX.
+        </p>
+        <a href="#">Saiba Mais</a>
+      </div>
+      <div class="game-card">
+        <img src="img/blasphemous_2_cover.jpg" alt="Blasphemous  II" />
+        <h3>Blasphemous II</h3>
+        <p class="game-description">
+          Gênero: Ação e aventura Descrição: A continuação do jogo "Blasphemous"
+          leva os jogadores a um mundo sombrio e religioso, cheio de ação
+          intensa e combate brutal. Com uma narrativa envolvente e elementos de
+          metroidvania, os jogadores exploram um mundo sinistro repleto de
+          segredos.
+        </p>
+        <a href="#">Saiba Mais</a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Sobre Nós</h4>
+          <p>
+            Somos apaixonados por jogos e estamos aqui para compartilhar as
+            últimas novidades.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Links Rápidos</h4>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="jogos.html">Jogos</a></li>
+            <li><a href="noticias.html">Notícias</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contatos.html">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contato</h4>
+          <p>Email: contato@levelUp.com</p>
+          <p>Telefone: (123) 456-7890</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2023 Carlos Wazlawick. Todos os direitos reservados.
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        let currentSlideIndex = 0;
+        var $slides = $(".game-carousel img");
+        var $background = $(".game-carousel");
+        var numSlides = $slides.length;
+
+        function updateBackground() {
+          var colors = ["#f47521", "#ff5722"];
+          $background.css("background-color", colors[currentSlideIndex % 2]);
+        }
+
+        function showSlide(index) {
+          $slides.hide();
+          $slides.eq(index).show();
+          currentSlideIndex = index;
+          updateBackground();
+        }
+
+        $("#prevBtn").click(function () {
+          showSlide((currentSlideIndex - 1 + numSlides) % numSlides);
+        });
+
+        $("#nextBtn").click(function () {
+          showSlide((currentSlideIndex + 1) % numSlides);
+        });
+
+        updateBackground();
+        showSlide(currentSlideIndex);
+
+        var autoSlideInterval = 8000;
+
+        function autoSlide() {
+          showSlide((currentSlideIndex + 1) % numSlides);
+        }
+
+        var autoSlideTimer = setInterval(autoSlide, autoSlideInterval);
+
+        $background.hover(
+          function () {
+            clearInterval(autoSlideTimer);
+          },
+          function () {
+            autoSlideTimer = setInterval(autoSlide, autoSlideInterval);
+          }
+        );
+      });
+    </script>
+  </body>
+</html>
